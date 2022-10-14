@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/employeepayrollservice")
+@RequestMapping("/employee")
 public class EmployeePayrollController {
 
 
@@ -18,6 +18,7 @@ public class EmployeePayrollController {
     public ResponseEntity<String> getEmployeePayrollData(@PathVariable("id") int id){
         return new ResponseEntity<>("Get call success for id : "+id,HttpStatus.OK);
     }
+    //post method for creating
     @PostMapping("/create")
     public ResponseEntity<String> addEmployeePayrollData(@RequestBody EmployeePayrollDTO empPayrollDTO){
         return new ResponseEntity<String>("created employee payroll data for "+empPayrollDTO,HttpStatus.OK);
@@ -30,9 +31,6 @@ public class EmployeePayrollController {
     public ResponseEntity<String> deleteEmployeePayrollData(@PathVariable("id") int id){
         return new ResponseEntity<String>("Delete call success for id "+id,HttpStatus.OK);
     }
-
-
-
 
 
 }
