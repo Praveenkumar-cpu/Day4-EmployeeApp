@@ -2,6 +2,8 @@ package com.bridgelabz.employeepayroleapp.services;
 
 import com.bridgelabz.employeepayroleapp.dto.EmployeePayrollDTO;
 import com.bridgelabz.employeepayroleapp.model.EmployeePayrollData;
+import com.bridgelabz.employeepayroleapp.repository.EmployeePayrollRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,6 +11,12 @@ import java.util.List;
 
 @Service
 public class EmployeePayrollService implements IEmployeePayrollService{
+
+    @Autowired
+    EmployeePayrollRepo employeePayrollRepo;
+
+
+
     @Override
     public List<EmployeePayrollData> getEmployeePayrollData() {
         List<EmployeePayrollData>employeePayrollDataList = null;
