@@ -16,8 +16,8 @@ public class EmployeePayrollData {
 
     public EmployeePayrollData(int employeeId, EmployeePayrollDTO employeePayrollDTO) {
         this.employeeId = employeeId;
-        this.name = name;
-        this.salary = salary;
+        this.name = employeePayrollDTO.name;
+        this.salary = employeePayrollDTO.salary;
     }
 
     public int getEmployeeId() {
