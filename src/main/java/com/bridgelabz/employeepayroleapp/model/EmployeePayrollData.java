@@ -5,9 +5,11 @@ import com.bridgelabz.employeepayroleapp.dto.EmployeePayrollDTO;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 // this is a model we to save in repository
 @Entity
+@Table(name = "Employee")
 public class EmployeePayrollData {
 @Id
 @GeneratedValue
@@ -25,6 +27,15 @@ public class EmployeePayrollData {
         this.employeeId = employeeId;
         this.name = employeePayrollDTO.name;
         this.salary = employeePayrollDTO.salary;
+    }
+
+    public EmployeePayrollData(String name, long salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public EmployeePayrollData(EmployeePayrollDTO empPayrollDTO) {
+
     }
 
     public int getEmployeeId() {
