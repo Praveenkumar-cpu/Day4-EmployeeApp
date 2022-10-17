@@ -11,8 +11,8 @@ public class EmployeepayroleappApplication {
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(EmployeepayroleappApplication.class);
 		//SpringApplication.run(EmployeepayroleappApplication.class, args);
-
 		log.info("Hi welcome to Employee Application "+ context.getEnvironment().getProperty("environment")+" Environment");
+
 
 	}
 
