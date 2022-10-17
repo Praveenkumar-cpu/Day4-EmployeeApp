@@ -2,9 +2,15 @@ package com.bridgelabz.employeepayroleapp.model;
 
 import com.bridgelabz.employeepayroleapp.dto.EmployeePayrollDTO;
 
-// this is a model we to save in repository
-public class EmployeePayrollData {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+// this is a model we to save in repository
+@Entity
+public class EmployeePayrollData {
+@Id
+@GeneratedValue
     private int employeeId;
     private String name;
     private long salary;
@@ -14,10 +20,11 @@ public class EmployeePayrollData {
 
     // here im passing constructor obj called  EmployeePayrollDTO
 
+
     public EmployeePayrollData(int employeeId, EmployeePayrollDTO employeePayrollDTO) {
         this.employeeId = employeeId;
-        this.name = name;
-        this.salary = salary;
+        this.name = employeePayrollDTO.name;
+        this.salary = employeePayrollDTO.salary;
     }
 
     public int getEmployeeId() {
