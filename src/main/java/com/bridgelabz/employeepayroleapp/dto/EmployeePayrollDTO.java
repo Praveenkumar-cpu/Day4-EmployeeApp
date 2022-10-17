@@ -14,7 +14,7 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 public class EmployeePayrollDTO {
     @NotEmpty(message = "Name Cannot Empty")
-@Pattern(regexp = "[A-Z]{1}]",message = "Enter Valid Name")
+@Pattern(regexp = "^[A-Z]{1}+[a-z]{3,}$",message = "Enter Valid Name")
     public String name;
     @Min(value = 500,message = "Salary Should Be Greater then 500Ru")
     public long salary;

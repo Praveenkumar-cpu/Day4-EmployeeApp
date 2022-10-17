@@ -12,6 +12,9 @@ import java.awt.geom.RectangularShape;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+
+//@ControllerAdvice allow to handle exception across the application
 @ControllerAdvice
 public class EmployeePayrollExceptionHandler {
 @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -20,6 +23,13 @@ public class EmployeePayrollExceptionHandler {
         List<String> errMsg = errorList.stream().map(objectError -> objectError.getDefaultMessage())
                 .collect(Collectors.toList());
         ResponseDTO responseDTO = new ResponseDTO("Exception while processing REST Request",errMsg);
+        return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
+    }
+
+
+    @ExceptionHandler(EmployeePayrollException.class)
+    public ResponseEntity<ResponseDTO> handleEmployeePayrollException(EmployeePayrollException exception){
+        ResponseDTO responseDTO = new ResponseDTO("Exception while processing REST Request", exception.getMessage());
         return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 }
