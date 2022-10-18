@@ -36,7 +36,7 @@ public @ToString class EmployeePayrollDTO {
     @NotNull(message = "profilePic cannot Not be Empty")
     public String profilePic;
 
-    @NotNull(message = "department sould Not be Empty")
+    @NotNull(message = "department should Not be Empty")
     public List<String> departments;
 
 

@@ -19,16 +19,19 @@ import java.util.List;
 public class EmployeePayrollData {
 @Id
 @GeneratedValue
+@Column(name = "employee_id")
     private int employeeId;
+@Column(name = "name")
     private String name;
     private long salary;
     private String gender;
     private LocalDate startDate;
-
     private String note;
     private String profilePic;
 
+    @Column(name = "department")
     @ElementCollection
+    //@CollectionTable(name = "employee_department",joinColumns = @joinColumn(name="id"))
     public List<String> departments;
 
 
@@ -38,6 +41,13 @@ public class EmployeePayrollData {
     }
 
     public EmployeePayrollData(EmployeePayrollDTO empPayrollDTO) {
+        this.name = empPayrollDTO.name;
+        this.salary = empPayrollDTO.salary;
+        this.gender = empPayrollDTO.gender;
+        this.startDate = empPayrollDTO.startDate;
+        this.note = empPayrollDTO.note;
+        this.profilePic = empPayrollDTO.profilePic;
+        this.departments = empPayrollDTO.departments;
 
     }
 
