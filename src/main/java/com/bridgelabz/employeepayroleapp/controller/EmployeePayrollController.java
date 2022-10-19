@@ -54,20 +54,29 @@ public class EmployeePayrollController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("empId") int empId,
+    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("id") int empId,
                                                                  @Valid @RequestBody EmployeePayrollDTO empPayrollDTO)
     {
-     EmployeePayrollData   employeePayrollData =  employeePayrollService.updateEmployeePayrollData( empId,empPayrollDTO);
-        ResponseDTO responseDTO =  new ResponseDTO("updated employee payroll data for successful",empPayrollDTO);
-        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+        EmployeePayrollData employeePayrollData = null;
+        employeePayrollData =  employeePayrollService.updateEmployeePayrollData( empId,empPayrollDTO);
+        ResponseDTO responseDTO =  new ResponseDTO("updated employee payroll data for successful",employeePayrollData);
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("delete/{empid}")
-    public ResponseEntity<ResponseDTO> deleteEmployeePayrollData(@PathVariable("empId")int empId)
+    public ResponseEntity<ResponseDTO> deleteEmployeePayrollData(@PathVariable("empid")int empId)
     {
         employeePayrollService.deleteEmployeePayrollData(empId);
         ResponseDTO responseDTO = new ResponseDTO("Deleted Successfully", "Deleted id: " +empId);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/department/{department}")
+    public ResponseEntity<ResponseDTO> getEmployeePayrollData(@PathVariable("department") String department){
+        List<EmployeePayrollData> empDataList = null;
+        empDataList = employeePayrollService.findEmployeesByDepartment(department);
+        ResponseDTO respDTO = new ResponseDTO("Get call for Id successfully", empDataList);
+        return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
 

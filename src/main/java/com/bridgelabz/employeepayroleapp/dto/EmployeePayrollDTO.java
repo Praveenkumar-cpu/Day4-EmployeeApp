@@ -16,7 +16,7 @@ import java.util.List;
 //@AllArgsConstructor
 public @ToString class EmployeePayrollDTO {
     @NotEmpty(message = "Name Cannot Empty")
-    @Pattern(regexp = "^[A-Z]{1}+[a-z]{3,}$",message = "Enter Valid Name")
+    @Pattern(regexp = "^[A-Z]{1}+[a-z]{3,}$",message = "Name Should starts With Capital Letter")
     public String name;
     @Min(value = 500,message = "Salary Should Be Greater then 500Ru")
     public long salary;
