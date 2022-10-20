@@ -26,11 +26,6 @@ public class EmployeePayrollServiceImpl implements IEmployeePayrollService{
 
     @Override
     public EmployeePayrollData getEmployeePayrollDataById(int empId) {
-//        Optional<EmployeePayrollData>employeePayrollData = employeePayrollRepo.findById(empId);
-//        if (employeePayrollData.isPresent())
-//        return employeePayrollData.get();
-//        return null;
-
 
         return employeePayrollRepository.findById(empId).orElseThrow(() -> new EmployeePayrollException("Employee not found for id "+empId));
     }
@@ -45,19 +40,19 @@ public class EmployeePayrollServiceImpl implements IEmployeePayrollService{
 
     @Override
     public EmployeePayrollData updateEmployeePayrollData(int empId,EmployeePayrollDTO empPayrollDTO) {
-        Optional<EmployeePayrollData>employeePayrollData = employeePayrollRepository.findById(empId);
-        if (employeePayrollData.isPresent()){
-            EmployeePayrollData data1 = employeePayrollData.get();
-            data1.setName(empPayrollDTO.name);
-            data1.setSalary(empPayrollDTO.salary);
-            employeePayrollRepository.save(data1);
-        }
-        return null;
+        EmployeePayrollData employeePayrollData = this.getEmployeePayrollDataById(empId);
+        employeePayrollData.updateEmployeePayrollData(empPayrollDTO);
+        return employeePayrollRepository.save(employeePayrollData);
     }
 
     @Override
     public void deleteEmployeePayrollData(int empId) {
         employeePayrollRepository.deleteById(empId);
 
+    }
+
+    @Override
+    public List<EmployeePayrollData> findEmployeesByDepartment(String department) {
+        return employeePayrollRepository.findEmployeesByDepartment(department);
     }
 }

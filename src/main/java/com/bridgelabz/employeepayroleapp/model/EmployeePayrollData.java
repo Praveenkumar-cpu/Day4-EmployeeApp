@@ -5,17 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
 // this is a model we to save in repository
 @Entity
+@ToString
 @Table(name = "employee")
 @Data
-//@AllArgsConstructor
-//@NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class EmployeePayrollData {
 @Id
 @GeneratedValue
@@ -31,37 +31,23 @@ public class EmployeePayrollData {
 
     @Column(name = "department")
     @ElementCollection
-    //@CollectionTable(name = "employee_department",joinColumns = @joinColumn(name="id"))
+    @CollectionTable(name = "employee_department",joinColumns = @JoinColumn (name = "id"))
     public List<String> departments;
 
 
-    public EmployeePayrollData(int employeeId,EmployeePayrollDTO employeePayrollDTO) {
-        this.employeeId = employeeId;
+    public EmployeePayrollData(EmployeePayrollDTO employeePayrollDTO) {
         this.updateEmployeePayrollData(employeePayrollDTO);
     }
 
-    public EmployeePayrollData(EmployeePayrollDTO empPayrollDTO) {
-        this.name = empPayrollDTO.name;
-        this.salary = empPayrollDTO.salary;
-        this.gender = empPayrollDTO.gender;
-        this.startDate = empPayrollDTO.startDate;
-        this.note = empPayrollDTO.note;
-        this.profilePic = empPayrollDTO.profilePic;
-        this.departments = empPayrollDTO.departments;
+    public void updateEmployeePayrollData(EmployeePayrollDTO empPayrollDTO) {
+        this.name = empPayrollDTO.getName();
+        this.salary = empPayrollDTO.getSalary();
+        this.gender = empPayrollDTO.getGender();
+        this.startDate = empPayrollDTO.getStartDate();
+        this.note = empPayrollDTO.getNote();
+        this.profilePic = empPayrollDTO.getProfilePic();
+        this.departments = empPayrollDTO.getDepartments();
 
-    }
-
-    public EmployeePayrollData() {
-
-    }
-
-    public void updateEmployeePayrollData(EmployeePayrollDTO employeePayrollDTO) {
-        this.name = employeePayrollDTO.name;
-        this.salary = employeePayrollDTO.salary;
-        this.gender = employeePayrollDTO.gender;
-        this.startDate = employeePayrollDTO.startDate;
-        this.profilePic = employeePayrollDTO.profilePic;
-        this.departments = employeePayrollDTO.departments;
     }
 
 }

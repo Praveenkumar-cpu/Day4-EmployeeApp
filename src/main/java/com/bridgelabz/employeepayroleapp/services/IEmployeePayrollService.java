@@ -17,4 +17,6 @@ public interface IEmployeePayrollService {
 
     void deleteEmployeePayrollData(int empId);
 
+    public List<EmployeePayrollData> findEmployeesByDepartment(String department);
+
 }
